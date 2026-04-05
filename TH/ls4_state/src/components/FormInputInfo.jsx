@@ -1,16 +1,19 @@
 import React from 'react'
 
 const FormInputInfo = (props) => {
-  const { setName, setEmail } = props;
-  const handeleSubmit = (e) => {
-    e.preventDefault();
+  const { handeleSubmit } = props;
 
-    setName(e.target.name.value);
-    setEmail(e.target.email.value);
+  const onSubmitForm = (e) =>{
+    e.preventDefault();
+    const email = e.target.email.value;
+    const name = e.target.name.value;
+    handeleSubmit(name, email)
   }
+
+
   return (
     <>
-    <form onSubmit={handeleSubmit}>
+    <form onSubmit={onSubmitForm}>
         <div>
         <label htmlFor="name">Name</label>
         <input type="text" id="name" name="name" />
