@@ -1,10 +1,11 @@
 import React from 'react'
 
-const ShowInfo = () => {
+const ShowInfo = (props) => {
+  const { name, email } = props;
   return (
     <div>
-    <p>Name: NVC</p>
-    <p>Email: a@gmail.com</p>
+    <p>Name: {name}</p>
+    <p>Email: {email}</p>
     </div>
   )
 }
