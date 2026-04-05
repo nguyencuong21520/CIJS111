@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar';
+import { useState } from 'react';
 import Card from './components/Card';
 function App() {
 
@@ -28,20 +29,23 @@ function App() {
     },
   ]
 
+  const [cardClicked, setCardClicked] = useState()
+
+  const handleCardClick = (id) => {
+    setCardClicked(id)
+  }
+
   return (
     <>
-      <Navbar />
-      <Navbar />
-      <h1>Hello MindX</h1>
-      <p>Hello</p>
-      <button>Click me</button>
-      <Navbar />
+      <Navbar cardClicked={cardClicked} />
+      <p>Card số {cardClicked} Đã được click</p>
+
 
       <h1> Card list</h1>
       <div style={{display: 'flex', gap: '10px', flexWrap: 'wrap'}}> 
         {
           cardData.map((card) => (
-            <Card key={card.id} title={card.title} description={card.description} lessons={card.lessons} />
+            <Card key={card.id} title={card.title} description={card.description} lessons={card.lessons} handleCardClick={handleCardClick} />
           ))
         }
       </div>

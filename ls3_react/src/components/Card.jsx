@@ -1,9 +1,9 @@
 import './Card.css';
 
 const Card = (props) => {
-  const { title, description, lessons } = props;
+  const { title, description, lessons, handleCardClick } = props;
   return (
-    <article className="card">
+    <article className="card" onClick={() => handleCardClick(title)}>
       <span className="card__tag">{title}</span>
 
       <h2 className="card__title">{title}</h2>
