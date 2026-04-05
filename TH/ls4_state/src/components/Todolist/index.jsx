@@ -1,30 +1,29 @@
 import InputToDoForm from './inputToDoForm'
 import ShowToDoList from './ShowToDoList'
+import { useState } from 'react'
 const ToDoList = () =>{
-
-    const mockTodoList = [
-        {
-            id: 1,
-            title: 'Todo 1',
-        },
-        {
-            id: 2,
-            title: 'Todo 2',
-        },
-        {
-            id: 3,
-            title: 'Todo 3',
-        },
-    ]
+    const [todoListData, setTodoListData] = useState([])
     //To do
     // - change mockTodoList -> todoListData using useState
     // - write handleAddTodo function
+
+    const handleAddTodo = (todo) => {
+        //to do
+    }
+
+    const handleDeleteTodo = (id) => {
+        //to do
+    }
+
+    const handleEditTodo = (id, todo) => {
+        //to do
+    }
 
     return (
         <div>
             <h1>Todo List</h1>
             <InputToDoForm />
-            <ShowToDoList todoList={mockTodoList} />
+            <ShowToDoList todoList={todoListData} />
         </div>
     )
 

@@ -6,7 +6,10 @@ const ShowToDoList = (props) =>{
             {todoList.map((todo) => (
                 <div key={todo.id}>
                     <i>{todo.id}</i> - <span>{todo.title}</span>
+                    <button>Delete</button>
+                    <button>Edit</button>
                 </div>
+
             ))}
         </div>
     )
