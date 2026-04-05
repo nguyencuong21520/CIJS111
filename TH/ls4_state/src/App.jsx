@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import FormInputInfo from './components/FormInputInfo'
 import ShowInfo from './components/ShowInfo'
+import ToDoList from './components/Todolist'
 const App = () => {
 
   const [name, setName] = useState('')
@@ -34,6 +35,9 @@ const App = () => {
       <FormInputInfo handeleSubmit={handeleSubmit}/>
       {errMsg && <p style={{ color: 'red' }}>{errMsg}</p>}
       <ShowInfo name={name} email={email}/>
+
+      <h2>Bài 2</h2>
+      <ToDoList />
     </div>
   )
 }
