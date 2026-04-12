@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#3323cc",
+                    "tertiary": "#7e3000",
+                    "on-tertiary-container": "#ffd2be",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "surface-dim": "#d8dadc",
+                    "on-tertiary-fixed-variant": "#7b2f00",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#c3c0ff",
+                    "outline-variant": "#c7c4d8",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#a44100",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-container": "#b6b4ff",
+                    "secondary": "#58579b",
+                    "on-primary-fixed": "#0f0069",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#e2dfff",
+                    "surface-tint": "#4d44e3",
+                    "surface-container-low": "#f2f4f6",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-bright": "#f7f9fb",
+                    "background": "#f7f9fb",
+                    "primary-container": "#4f46e5",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#e2dfff",
+                    "on-tertiary-fixed": "#351000",
+                    "inverse-surface": "#2d3133",
+                    "surface-variant": "#e0e3e5",
+                    "on-primary-container": "#dad7ff",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-background": "#191c1e",
+                    "on-surface-variant": "#464555",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#413f82",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed": "#140f54",
+                    "tertiary-fixed": "#ffdbcc",
+                    "on-surface": "#191c1e",
+                    "secondary-fixed-dim": "#c3c0ff",
+                    "outline": "#777587",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#ffb695",
+                    "surface-container": "#eceef0",
+                    "on-secondary-container": "#454386",
+                    "primary": "#3525cd",
+                    "surface": "#f7f9fb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .vibe-bar {
+            width: 4px;
+            border-radius: 2px;
+            background: #e0e3e5;
+        }
+        .vibe-bar-active {
+            background: linear-gradient(135deg, #3525cd 0%, #4f46e5 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- SideNavBar (Authority: Shared Components JSON) -->
+<aside class="hidden md:flex flex-col p-6 gap-2 h-screen w-64 fixed left-0 top-0 z-40 bg-white dark:bg-slate-950 shadow-xl dark:shadow-none font-['Inter'] text-sm font-medium">
+<div class="mb-10 px-4">
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold text-xl text-slate-900 dark:text-slate-50">Curator Admin</h1>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest mt-1">Electronics Portal</p>
+</div>
+<nav class="flex-1 flex flex-col gap-2">
+<!-- Active State: Pending Reviews is the primary task of this dashboard view -->
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 bg-indigo-50 dark:bg-indigo-900/30 text-[#3525cd] dark:text-indigo-200 rounded-xl px-4 py-3 active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="pending_actions">pending_actions</span>
+<span>Pending Reviews</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+<span>Published</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-surface-variant/30">
+<div class="flex items-center gap-3 px-4 mb-6">
+<img alt="Admin Avatar" class="w-10 h-10 rounded-full object-cover" data-alt="professional male portrait for corporate profile, clean lighting, soft background blur" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTBe75rJdrsg613DZsZdnV5Iga5xAnx5ryIcO2v3vBDcQKQ0opsnyMoSNbtG1UjkQPiOdNKz72Q2OceOhRHmrVsHOovB7mIoh9IlQccur0FD3AGjcN_X8xF2zPpK-UeT0HmsWhZUSi6cTzFALbC0vZOSev7Id_Zq-Z5ki0SoXF5nQpCo1bqkm6GVckjYh2BEzXsu3rGB2OQIImcY7zfhW-KyRFMksIZVczMGkVpm90X7shDxWYMWtsPOM4Izxu0G92Z_F53dzZMRc"/>
+<div>
+<p class="font-semibold text-slate-900 dark:text-slate-50">Admin</p>
+<p class="text-xs text-slate-500">Curator Lead</p>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary py-3 rounded-xl font-semibold shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity active:scale-95">
+                Export Report
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 min-h-screen pb-24 md:pb-12">
+<!-- TopAppBar (Authority: Shared Components JSON) -->
+<header class="flex items-center justify-between px-6 h-16 w-full sticky top-0 z-50 bg-[#f7f9fb] dark:bg-slate-900 font-['Plus_Jakarta_Sans'] font-semibold text-lg">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-slate-900 dark:text-slate-50 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<span class="material-symbols-outlined text-[#4F46E5] dark:text-indigo-400" data-icon="arrow_back">arrow_back</span>
+<h2 class="text-slate-900 dark:text-slate-50">Reviews</h2>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#4F46E5] dark:text-indigo-400 hover:opacity-80 transition-opacity cursor-pointer" data-icon="search">search</span>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-[10px] text-on-secondary-container font-bold">
+                    JD
+                </div>
+</div>
+</header>
+<div class="px-6 md:px-10 py-8 max-w-7xl mx-auto space-y-10">
+<!-- Summary Stats Bar (Asymmetric Layout) -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<div class="md:col-span-4 bg-surface-container-lowest p-8 rounded-[32px] flex flex-col justify-between h-48 relative overflow-hidden group">
+<div class="z-10">
+<p class="text-on-surface-variant font-medium text-sm">Total Reviews</p>
+<h3 class="font-headline font-bold text-4xl mt-2">12.4k</h3>
+</div>
+<div class="z-10 flex items-center gap-2 text-primary font-semibold text-sm">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+<span>+12% from last month</span>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-5 group-hover:scale-110 transition-transform duration-700">
+<span class="material-symbols-outlined text-[120px]" data-icon="rate_review">rate_review</span>
+</div>
+</div>
+<div class="md:col-span-5 bg-primary-container p-8 rounded-[32px] text-on-primary flex flex-col justify-between h-48 relative shadow-2xl shadow-primary/30">
+<div class="flex justify-between items-start">
+<div>
+<p class="opacity-80 font-medium text-sm">Average Rating</p>
+<h3 class="font-headline font-bold text-5xl mt-2">4.8</h3>
+</div>
+<div class="flex items-end gap-1 h-12">
+<div class="vibe-bar h-6 bg-white/30"></div>
+<div class="vibe-bar h-10 bg-white/30"></div>
+<div class="vibe-bar h-12 vibe-bar-active !bg-white"></div>
+<div class="vibe-bar h-9 vibe-bar-active !bg-white"></div>
+<div class="vibe-bar h-7 vibe-bar-active !bg-white"></div>
+</div>
+</div>
+<p class="text-sm font-medium opacity-90">Based on 850+ new verified purchases</p>
+</div>
+<div class="md:col-span-3 bg-surface-container-low p-8 rounded-[32px] flex flex-col justify-center items-center h-48 text-center">
+<p class="text-on-surface-variant font-medium text-sm mb-2">Pending Approval</p>
+<h3 class="font-headline font-bold text-5xl text-error">42</h3>
+<button class="mt-4 text-primary font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all">
+                        Review Now <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Data Table Section (Editorial Style) -->
+<section class="space-y-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<h2 class="font-headline font-semibold text-2xl text-on-surface">Recent Submissions</h2>
+<div class="flex items-center gap-3">
+<div class="bg-surface-container-low px-4 py-2 rounded-full flex items-center gap-2 focus-within:bg-white focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+<span class="material-symbols-outlined text-on-surface-variant text-xl" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 md:w-64" placeholder="Search product or customer..." type="text"/>
+</div>
+<button class="bg-surface-container-high p-2 rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-on-surface" data-icon="filter_list">filter_list</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-[32px] overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50 text-on-surface-variant text-xs font-semibold uppercase tracking-wider">
+<th class="px-8 py-5">Product</th>
+<th class="px-6 py-5">Customer</th>
+<th class="px-6 py-5">Rating</th>
+<th class="px-6 py-5">Status</th>
+<th class="px-6 py-5">Date</th>
+<th class="px-8 py-5 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<!-- Row 1 -->
+<tr class="group hover:bg-surface-bright transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-low flex items-center justify-center overflow-hidden">
+<img class="object-cover w-full h-full" data-alt="professional studio shot of high-end wireless headphones on a clean minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1d-PidJZHjd2Td2Sxd4yBn80snTR6e9_igt9oxXQSkrKJxHOjjPPRdVTXb2epOZCGVnuzLyD2zb1wwFx_BA0LYEEF--jfahbC1n4sanRbHZubBjVOD3LRsNd_YSP3jQ4qhC5Oy6FBfUODTEmRUmcmAGpqCdNCf_6vQKVOCGggvKG4JL7jYxAG8_192c1PKg1yVMbxmwsnvECKn6RYKSvqIop5dKyA4WhDK0Y0EepG_1zC8VZRoCl2cb0SW71J8jqmwkborbpDV-0"/>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Studio Pro X1</p>
+<p class="text-xs text-on-surface-variant">Audio &amp; Sound</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Alex Rivera</span>
+<span class="text-xs text-on-surface-variant">alex.r@example.com</span>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="flex items-end gap-0.5">
+<div class="vibe-bar h-3 vibe-bar-active"></div>
+<div class="vibe-bar h-5 vibe-bar-active"></div>
+<div class="vibe-bar h-6 vibe-bar-active"></div>
+<div class="vibe-bar h-4 vibe-bar-active"></div>
+<div class="vibe-bar h-5 vibe-bar-active"></div>
+</div>
+</td>
+<td class="px-6 py-6">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded-md">PENDING</span>
+</td>
+<td class="px-6 py-6">
+<span class="text-sm text-on-surface-variant">Oct 24, 2023</span>
+</td>
+<td class="px-8 py-6 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 text-primary hover:bg-primary/10 rounded-full transition-colors active:scale-90" title="Approve">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors active:scale-90" title="Reply">
+<span class="material-symbols-outlined" data-icon="reply">reply</span>
+</button>
+<button class="p-2 text-error hover:bg-error/10 rounded-full transition-colors active:scale-90" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="group hover:bg-surface-bright transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-low flex items-center justify-center overflow-hidden">
+<img class="object-cover w-full h-full" data-alt="modern minimalist white watch on a neutral background, high-end product photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJv9WdHk8TUS-4tzwZZzBtsE7Kf07OI8wJBpbiGYey7mpZF8zDOsOcRf-xD0ck8YVp6oMkGUUsCMKrfZiV0LcZIXNkDvki0IFqygeofLb2Xi37SRLli5X2gF2r9UhkKRtFX8DzYIEDxsHXgL7pUdP2O5_F0CnGBl-YFiw8rS0asBzyPR3VUCIgQJweFeGwY3Q-ApUvNCkR2zN_46Sb0XMm66LiDcEQuLhUf2se8ieJSjCU2jVHxs5x_E_J9zU-pCCcGF21vJJoSpg"/>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Luna Smartwatch</p>
+<p class="text-xs text-on-surface-variant">Wearables</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Sarah Chen</span>
+<span class="text-xs text-on-surface-variant">s.chen@domain.com</span>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="flex items-end gap-0.5">
+<div class="vibe-bar h-3 vibe-bar-active"></div>
+<div class="vibe-bar h-5 vibe-bar-active"></div>
+<div class="vibe-bar h-6 vibe-bar-active"></div>
+<div class="vibe-bar h-4 vibe-bar-active"></div>
+<div class="vibe-bar h-2"></div>
+</div>
+</td>
+<td class="px-6 py-6">
+<span class="px-3 py-1 bg-surface-container-high text-on-surface-variant text-[10px] font-bold rounded-md">PUBLISHED</span>
+</td>
+<td class="px-6 py-6">
+<span class="text-sm text-on-surface-variant">Oct 23, 2023</span>
+</td>
+<td class="px-8 py-6 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors active:scale-90" title="Reply">
+<span class="material-symbols-outlined" data-icon="reply">reply</span>
+</button>
+<button class="p-2 text-error hover:bg-error/10 rounded-full transition-colors active:scale-90" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="group hover:bg-surface-bright transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-low flex items-center justify-center overflow-hidden">
+<img class="object-cover w-full h-full" data-alt="sleek mechanical keyboard with RGB lighting on a dark desk, editorial tech aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgqYyGK-EPOoGC1tTCGz5ZmInuFgNOs3CBPCHGgeGFFwnzBASyjFny7wVk3EtJE31zD2E-xyrQmNy53k00RePM7wLOAVFOd4SD3QrpLucGQWOijojmFs3i9Qh7SE8Fkhk2Lz1WaV7NBp-3JnNFuDWr04NStcULdcXzTswAj2Zsu1cK6ZKqqO3CnQ9-eojwhbXFGUlq-ja14nwp7W08yL18WH1omBdl3uB8Ff_k3j-kRDm2RUbuaaUiU051Cu3sF6f2jY7z2_vTz7s"/>
+</div>
+<div>
+<p class="font-semibold text-on-surface">ClickFlow Keys</p>
+<p class="text-xs text-on-surface-variant">Peripherals</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">Marcus Thorne</span>
+<span class="text-xs text-on-surface-variant">m.thorne@tech.io</span>
+</div>
+</td>
+<td class="px-6 py-6">
+<div class="flex items-end gap-0.5">
+<div class="vibe-bar h-4 vibe-bar-active"></div>
+<div class="vibe-bar h-6 vibe-bar-active"></div>
+<div class="vibe-bar h-5 vibe-bar-active"></div>
+<div class="vibe-bar h-3 vibe-bar-active"></div>
+<div class="vibe-bar h-5 vibe-bar-active"></div>
+</div>
+</td>
+<td class="px-6 py-6">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded-md">PENDING</span>
+</td>
+<td class="px-6 py-6">
+<span class="text-sm text-on-surface-variant">Oct 22, 2023</span>
+</td>
+<td class="px-8 py-6 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 text-primary hover:bg-primary/10 rounded-full transition-colors active:scale-90" title="Approve">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors active:scale-90" title="Reply">
+<span class="material-symbols-outlined" data-icon="reply">reply</span>
+</button>
+<button class="p-2 text-error hover:bg-error/10 rounded-full transition-colors active:scale-90" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-8 py-5 flex items-center justify-between bg-surface-container-low/30 border-t border-surface-container-low">
+<span class="text-sm text-on-surface-variant">Showing 1-10 of 42 pending reviews</span>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg hover:bg-surface-container-high text-on-surface-variant disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-on-primary font-bold text-xs">1</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-high text-on-surface-variant font-bold text-xs">2</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-high text-on-surface-variant font-bold text-xs">3</button>
+<button class="p-2 rounded-lg hover:bg-surface-container-high text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only - Authority: Shared Components JSON) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-[32px] bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl shadow-[0_-8px_32px_rgba(0,0,0,0.06)] flex justify-around items-center px-4 pt-3 pb-8 w-full font-['Inter'] text-[10px] font-medium">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-xl mb-1" data-icon="grid_view">grid_view</span>
+<span>Feed</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-indigo-50 dark:bg-indigo-900/30 text-[#3525cd] dark:text-indigo-200 rounded-2xl px-5 py-2 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-xl mb-1" data-icon="rate_review" style="font-variation-settings: 'FILL' 1;">rate_review</span>
+<span>Reviews</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-xl mb-1" data-icon="bookmark">bookmark</span>
+<span>Saved</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined text-xl mb-1" data-icon="person">person</span>
+<span>Profile</span>
+</a>
+</nav>
+</body></html>

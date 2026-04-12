@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Submit Review | Electronics Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#3323cc",
+                    "tertiary": "#7e3000",
+                    "on-tertiary-container": "#ffd2be",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "surface-dim": "#d8dadc",
+                    "on-tertiary-fixed-variant": "#7b2f00",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#c3c0ff",
+                    "outline-variant": "#c7c4d8",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#a44100",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-container": "#b6b4ff",
+                    "secondary": "#58579b",
+                    "on-primary-fixed": "#0f0069",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#e2dfff",
+                    "surface-tint": "#4d44e3",
+                    "surface-container-low": "#f2f4f6",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-bright": "#f7f9fb",
+                    "background": "#f7f9fb",
+                    "primary-container": "#4f46e5",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#e2dfff",
+                    "on-tertiary-fixed": "#351000",
+                    "inverse-surface": "#2d3133",
+                    "surface-variant": "#e0e3e5",
+                    "on-primary-container": "#dad7ff",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-background": "#191c1e",
+                    "on-surface-variant": "#464555",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#413f82",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed": "#140f54",
+                    "tertiary-fixed": "#ffdbcc",
+                    "on-surface": "#191c1e",
+                    "secondary-fixed-dim": "#c3c0ff",
+                    "outline": "#777587",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#ffb695",
+                    "surface-container": "#eceef0",
+                    "on-secondary-container": "#454386",
+                    "primary": "#3525cd",
+                    "surface": "#f7f9fb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .vibe-bar-1 { height: 12px; }
+        .vibe-bar-2 { height: 20px; }
+        .vibe-bar-3 { height: 28px; }
+        .vibe-bar-4 { height: 20px; }
+        .vibe-bar-5 { height: 12px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Shell -->
+<header class="w-full sticky top-0 z-50 bg-[#f7f9fb] dark:bg-slate-900 flex items-center justify-between px-6 h-16">
+<button class="text-[#4F46E5] dark:text-indigo-400 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-semibold text-lg text-slate-900 dark:text-slate-50">Reviews</h1>
+<button class="text-[#4F46E5] dark:text-indigo-400 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">search</span>
+</button>
+</header>
+<main class="max-w-5xl mx-auto px-6 py-12 md:flex md:gap-12">
+<!-- Sidebar Shell (Hidden on mobile) -->
+<aside class="hidden md:flex h-[calc(100vh-8rem)] w-64 flex-col p-6 gap-2 bg-white dark:bg-slate-950 rounded-3xl shadow-xl sticky top-24">
+<div class="mb-6 px-4">
+<h2 class="font-['Plus_Jakarta_Sans'] font-bold text-xl text-slate-900 dark:text-slate-50">Curator Admin</h2>
+<p class="text-xs text-slate-500">Electronics Portal</p>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-['Inter'] text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 bg-indigo-50 dark:bg-indigo-900/30 text-[#3525cd] dark:text-indigo-200 rounded-xl px-4 py-3" href="#">
+<span class="material-symbols-outlined">pending_actions</span>
+<span class="font-['Inter'] text-sm font-medium">Pending Reviews</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors rounded-xl" href="#">
+<span class="material-symbols-outlined">verified</span>
+<span class="font-['Inter'] text-sm font-medium">Published</span>
+</a>
+</nav>
+<div class="mt-auto">
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-white py-3 px-4 rounded-full font-semibold text-sm shadow-lg active:scale-95 transition-transform">
+                    Export Report
+                </button>
+</div>
+</aside>
+<!-- Form Content Area -->
+<div class="flex-1 space-y-12">
+<!-- Product Summary Section -->
+<section class="bg-surface-container-lowest p-8 rounded-[32px] flex flex-col md:flex-row gap-8 items-center md:items-start">
+<div class="w-40 h-40 rounded-2xl overflow-hidden bg-surface-container-low shrink-0">
+<img alt="Sony Wireless Headphones" class="w-full h-full object-cover" data-alt="Close-up of premium black over-ear noise-cancelling headphones on a minimalist clean white background with soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-x4_a88MrpUKubqsRxbN1DC3tifkVDhC9zM_l1E7jSyOQGt7fLg-JhxRth4zvgDB5lRanBFEFoX_pYJhgRjjP7ZJuNJ4FLJM3SeQ9LvYv2ZgBT0HKjjQzRd2havgNXKM_ByCpwM5HKL5TR4ezbQKpwNS2AEoNRYmIloP-2HzymzmAqlazDntFRYYClkDb7_8uXuHB0jGq6Ooq5pvU2dslqlbPIasblYJjIuqHuZ9RlA4oEzQfk1PuU7kL6LLVA48GUhw0ELQ0FGY"/>
+</div>
+<div class="flex-1 text-center md:text-left">
+<div class="flex items-center justify-center md:justify-start gap-2 mb-2">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-md text-xs font-semibold tracking-wide uppercase">Electronics</span>
+<div class="flex items-center gap-1 bg-surface-container-high px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px] text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">Verified Purchase</span>
+</div>
+</div>
+<h2 class="font-headline text-3xl font-bold text-on-surface mb-2 tracking-tight">Sony WH-1000XM5</h2>
+<p class="text-on-surface-variant font-body leading-relaxed max-w-md">Wireless Noise Cancelling Headphones. Silver/Black Edition. Purchased on Oct 12, 2023.</p>
+</div>
+</section>
+<!-- Submission Form -->
+<form class="space-y-8">
+<!-- Vibe Meter & Main Star Rating -->
+<div class="bg-surface-container-low p-10 rounded-[32px] space-y-8">
+<div class="flex flex-col items-center gap-6">
+<h3 class="font-headline text-xl font-semibold">Overall Satisfaction</h3>
+<!-- Signature Vibe Meter -->
+<div class="flex items-end gap-2 h-12">
+<div class="vibe-bar-1 w-3 rounded-full bg-primary/20"></div>
+<div class="vibe-bar-2 w-3 rounded-full bg-primary"></div>
+<div class="vibe-bar-3 w-3 rounded-full bg-primary"></div>
+<div class="vibe-bar-4 w-3 rounded-full bg-primary/40"></div>
+<div class="vibe-bar-5 w-3 rounded-full bg-primary/10"></div>
+</div>
+<div class="flex gap-2">
+<button class="text-primary active:scale-90 transition-transform" type="button"><span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">star</span></button>
+<button class="text-primary active:scale-90 transition-transform" type="button"><span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">star</span></button>
+<button class="text-primary active:scale-90 transition-transform" type="button"><span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">star</span></button>
+<button class="text-primary active:scale-90 transition-transform" type="button"><span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">star</span></button>
+<button class="text-outline active:scale-90 transition-transform" type="button"><span class="material-symbols-outlined text-4xl">star</span></button>
+</div>
+</div>
+<!-- Granular Ratings -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 border-t border-outline-variant/20">
+<div class="space-y-3">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Sound Quality</label>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<div class="space-y-3">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Battery Life</label>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-outline-variant text-xl">star</span>
+</div>
+</div>
+<div class="space-y-3">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Comfort</label>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-outline-variant text-xl">star</span>
+<span class="material-symbols-outlined text-outline-variant text-xl">star</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Review Text -->
+<div class="space-y-4">
+<label class="font-headline text-lg font-semibold block px-2">Write your review</label>
+<textarea class="w-full h-48 bg-surface-container-low border-none rounded-3xl p-6 font-body text-on-surface placeholder:text-on-surface-variant/50 focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all" placeholder="What was your experience like with these headphones?"></textarea>
+</div>
+<!-- File Upload -->
+<div class="space-y-4">
+<label class="font-headline text-lg font-semibold block px-2">Share your setup</label>
+<div class="relative group">
+<div class="w-full h-40 border-2 border-dashed border-outline-variant/30 bg-surface-container-low rounded-[32px] flex flex-col items-center justify-center gap-3 group-hover:bg-surface-container-high transition-colors cursor-pointer">
+<div class="bg-primary/10 p-3 rounded-2xl text-primary">
+<span class="material-symbols-outlined text-3xl">upload_file</span>
+</div>
+<p class="text-sm font-medium text-on-surface-variant">Drag and drop photos or <span class="text-primary underline">browse</span></p>
+<p class="text-[10px] text-outline uppercase tracking-wider">Supports JPG, PNG up to 10MB</p>
+</div>
+<input class="absolute inset-0 opacity-0 cursor-pointer" type="file"/>
+</div>
+</div>
+<!-- Form Actions -->
+<div class="flex items-center justify-end gap-4 pt-6">
+<button class="bg-surface-container-high text-on-surface px-8 py-4 rounded-full font-semibold text-sm hover:opacity-80 transition-opacity" type="button">
+                        Save Draft
+                    </button>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-10 py-4 rounded-full font-bold text-sm shadow-xl active:scale-95 transition-transform" type="submit">
+                        Post Review
+                    </button>
+</div>
+</form>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-[32px] bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl shadow-[0_-8px_32px_rgba(0,0,0,0.06)] flex justify-around items-center px-4 pt-3 pb-8">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-indigo-500 transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-['Inter'] text-[10px] font-medium">Feed</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-indigo-50 dark:bg-indigo-900/30 text-[#3525cd] dark:text-indigo-200 rounded-2xl px-5 py-2 active:scale-90" href="#">
+<span class="material-symbols-outlined">rate_review</span>
+<span class="font-['Inter'] text-[10px] font-medium">Reviews</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-indigo-500 transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+<span class="font-['Inter'] text-[10px] font-medium">Saved</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-5 py-2 hover:text-indigo-500 transition-colors active:scale-90" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] text-[10px] font-medium">Profile</span>
+</a>
+</nav>
+<!-- FAB (Contextual for Review Page) -->
+<button class="fixed bottom-24 right-6 md:right-12 md:bottom-12 w-14 h-14 bg-primary text-white rounded-2xl shadow-2xl flex items-center justify-center active:scale-90 transition-transform md:hidden">
+<span class="material-symbols-outlined">help</span>
+</button>
+</body></html>

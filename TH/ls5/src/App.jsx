@@ -1,123 +1,77 @@
-import React, { useState } from 'react'
-import { Form, Input, Button, Checkbox, Switch, Radio, Select, ConfigProvider } from 'antd'
-import { ExclamationCircleFilled } from '@ant-design/icons'
+import { useState } from 'react'
+import { useReviews } from './hooks/useReviews'
+import { Sidebar, Header, AdminDashboard, SubmitReviewForm } from './components/review'
 import './App.css'
 
-const options = [
-  { label: 'Dropdown option', value: 'option-0' },
-  { label: 'Dropdown option 1', value: 'option-1' },
-  { label: 'Dropdown option 2', value: 'option-2' },
-];
-const LabelCustom = (props) => {
-  const title = props.title
-  return <span className="text-[12px] text-gray-500 pb-0">{title}</span>
+export default function App() {
+  const { reviews, addReview, approveReview, deleteReview, stats } = useReviews()
+  const [page, setPage] = useState('dashboard')
 
-}
-
-const App = () => {
-  const [form] = Form.useForm();
-  const inputTextValue = Form.useWatch('inputText', form);
-  const [isSwitchOn, setIsSwitchOn] = useState(false);
-  const hasNumberInInputText = /\d/.test(inputTextValue || '');
-
-  const handleSwitchChange = (checked) => {
-    setIsSwitchOn(checked);
-    form.setFieldValue('status', checked);
-  };
-
-  const handleFinish = (values) => {
-    console.log('Form data:', { ...values, status: isSwitchOn });
-  };
+  const handleSubmitReview = (review) => {
+    addReview(review)
+    setPage('dashboard')
+  }
 
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: '#7056F5',
-          borderRadius: 8,
-        },
-      }}
-    > 
-    <section className="bg-gray-50 px-6 py-14">
-      <div className="max-w-[540px] mx-auto w-full border border-gray-300 rounded-lg p-6">
-        <Form
-          layout="vertical"
-          className=""
-          form={form}
-          onFinish={handleFinish}
-          initialValues={{ remember: false, status: false, dropdown: 'option-0' }}
+    <div className="min-h-screen bg-surface font-body text-on-surface">
+      {/* Sidebar (fixed on desktop) */}
+      <Sidebar currentPage={page} onNavigate={setPage} />
+
+      {/* Main content area */}
+      <main className="md:ml-64 min-h-screen pb-24 md:pb-12">
+        <Header currentPage={page} onNavigate={setPage} />
+
+        {page === 'dashboard' && (
+          <AdminDashboard
+            reviews={reviews}
+            stats={stats}
+            onApprove={approveReview}
+            onDelete={deleteReview}
+            onNavigate={setPage}
+          />
+        )}
+
+        {page === 'submit' && (
+          <SubmitReviewForm
+            onSubmit={handleSubmitReview}
+            onBack={() => setPage('dashboard')}
+          />
+        )}
+      </main>
+
+      {/* Mobile Bottom Nav */}
+      <nav className="md:hidden fixed bottom-0 w-full z-50 rounded-t-[32px] bg-white/70 backdrop-blur-xl shadow-[0_-8px_32px_rgba(0,0,0,0.06)] flex justify-around items-center px-4 pt-3 pb-8">
+        <button
+          onClick={() => setPage('dashboard')}
+          className={`flex flex-col items-center justify-center px-5 py-2 active:scale-90 transition-transform ${
+            page === 'dashboard'
+              ? 'bg-primary/10 text-primary rounded-2xl'
+              : 'text-outline'
+          }`}
         >
-          <Form.Item label={<LabelCustom title="Name" />} className="p-0" name="name">
-            <Input size="large" placeholder="Enter your name" className="h-[48px]" />
-          </Form.Item>
-
-          <Form.Item extra={<span className="text-[10px] text-gray-400">Your password is between 4 and 12 characters</span>} label={<LabelCustom title="Password" />} name="password">
-            <Input.Password size="large" placeholder="Enter your Password" className="h-[48px]" />
-          </Form.Item>
-
-          <Form.Item
-            label={<LabelCustom title="Input Text Label" />}
-            className="mb-6"
-            name="inputText"
-            validateStatus={hasNumberInInputText ? 'error' : ''}
-            help={hasNumberInInputText ? <span className="text-[10px] text-red-500">Error message informing me of a problem</span> : null}
-            rules={[
-              {
-                validator: (_, value) => {
-                  if (!value || !/\d/.test(value)) {
-                    return Promise.resolve();
-                  }
-                  return Promise.reject(new Error('Error message informing me of a problem'));
-                },
-              },
-            ]}
-            validateTrigger="onChange"
-          >
-            <Input
-              size="large"
-              placeholder="Typing..."
-              className="h-[48px]"
-              suffix={hasNumberInInputText ? <ExclamationCircleFilled /> : null}
-            />
-          </Form.Item>
-
-          <Form.Item name="remember" valuePropName="checked">
-            <Checkbox>Remember me</Checkbox>
-          </Form.Item>
-
-          <div className='flex items-center gap-2 mb-6'>
-            <Switch checked={isSwitchOn} onChange={handleSwitchChange} />
-            <span>{isSwitchOn ? 'On' : 'Off'}</span>
-          </div>
-
-          <Form.Item name="radioSelection">
-            <Radio.Group vertical>
-              <Radio value="radio-1">Radio selection 1</Radio>
-              <Radio value="radio-2">Radio selection 2</Radio>
-              <Radio value="radio-3">Radio selection 3</Radio>
-            </Radio.Group>
-          </Form.Item>
-
-          <Form.Item label={<LabelCustom title="Dropdown Title" />} name="dropdown" className="mb-0">
-            <Select
-              size="large"
-              placeholder="Select an option"
-              options={options}
-              className="form-dropdown-select-wrap"
-              popupClassName="form-dropdown-select-popup"
-              popupMatchSelectWidth
-            />
-          </Form.Item>
-
-          <div className='flex items-center justify-between'>
-            <Button variant="outlined" color="primary" size="large">Cancel</Button>
-            <Button type="primary" size="large" htmlType="submit">Next</Button>
-          </div>
-        </Form>
-      </div>
-    </section>
-    </ConfigProvider>
+          <span className="material-symbols-outlined text-xl mb-1">grid_view</span>
+          <span className="text-[10px] font-medium">Feed</span>
+        </button>
+        <button
+          onClick={() => setPage('submit')}
+          className={`flex flex-col items-center justify-center px-5 py-2 active:scale-90 transition-transform ${
+            page === 'submit'
+              ? 'bg-primary/10 text-primary rounded-2xl'
+              : 'text-outline'
+          }`}
+        >
+          <span className="material-symbols-outlined text-xl mb-1">rate_review</span>
+          <span className="text-[10px] font-medium">Reviews</span>
+        </button>
+        <button className="flex flex-col items-center justify-center text-outline px-5 py-2 active:scale-90 transition-transform">
+          <span className="material-symbols-outlined text-xl mb-1">bookmark</span>
+          <span className="text-[10px] font-medium">Saved</span>
+        </button>
+        <button className="flex flex-col items-center justify-center text-outline px-5 py-2 active:scale-90 transition-transform">
+          <span className="material-symbols-outlined text-xl mb-1">person</span>
+          <span className="text-[10px] font-medium">Profile</span>
+        </button>
+      </nav>
+    </div>
   )
 }
-
-export default App
