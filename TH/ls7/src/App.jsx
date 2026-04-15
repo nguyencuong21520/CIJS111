@@ -1,5 +1,6 @@
 
 import { ConfigProvider } from 'antd'
+import Register from './components/Register'
 
 function App() {
 
@@ -9,12 +10,18 @@ function App() {
       theme={{
         token: {
           colorPrimary: '#1f4d6e',
-          borderRadius: 4
+          colorBorder: '#7da2bd',
+          borderRadius: 4,
+        },
+        components: {
+          Input: {
+            algorithm: true,
+          },
         },
       }}
     >
       <main className="min-h-screen bg-slate-100 px-4 py-10">
-
+        <Register />
       </main>
     </ConfigProvider>
   )
