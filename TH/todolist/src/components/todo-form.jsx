@@ -1,8 +1,10 @@
+import { memo } from 'react'
+
 /**
  * Form thêm công việc mới.
- * Controlled component: App truyền value/onChange để ô nhập luôn khớp state; submit gọi onSubmit của App (thêm + reset ô).
+ * memo: chỉ render lại khi value/onChange/onSubmit đổi — khi chỉ ô tìm kiếm hay danh sách thay đổi không cần render lại form.
  */
-export function TodoForm({ value, onChange, onSubmit }) {
+function TodoFormComponent({ value, onChange, onSubmit }) {
   return (
     <form
       onSubmit={onSubmit}
@@ -23,3 +25,5 @@ export function TodoForm({ value, onChange, onSubmit }) {
     </form>
   )
 }
+
+export const TodoForm = memo(TodoFormComponent)

@@ -1,9 +1,10 @@
+import { memo } from 'react'
+
 /**
- * Ô tìm kiếm — chỉ dùng lọc danh sách hiển thị, không đụng vào dữ liệu gốc.
- * type="search": một số trình duyệt có UI gợi ý riêng cho ô tìm kiếm.
- * value và onChange do App điều khiển.
+ * Ô tìm kiếm — chỉ dùng lọc danh sách hiển thị.
+ * memo: tránh render lại khi chỉ gõ ô thêm việc (state newTitle khác) mà không đổi search.
  */
-export function TodoSearchInput({ value, onChange }) {
+function TodoSearchInputComponent({ value, onChange }) {
   return (
     <input
       type="search"
@@ -14,3 +15,5 @@ export function TodoSearchInput({ value, onChange }) {
     />
   )
 }
+
+export const TodoSearchInput = memo(TodoSearchInputComponent)

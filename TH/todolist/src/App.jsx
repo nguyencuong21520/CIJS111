@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { TodoForm } from './components/todo-form.jsx'
 import { TodoList } from './components/todo-list.jsx'
 import { TodoSearchInput } from './components/todo-search-input.jsx'
@@ -7,66 +7,63 @@ import './App.css'
 /**
  * Ứng dụng Todo List — component gốc.
  *
- * - Toàn bộ dữ liệu nằm trong bộ nhớ (state React). Reload trang sẽ mất danh sách.
- * - Không dùng custom hook: logic CRUD được giữ trực tiếp đây để dễ theo dõi khi học.
+ * - useMemo: tính lại visibleTodos chỉ khi todos hoặc search thay đổi (tránh filter lặp không cần thiết mỗi lần render).
+ * - useCallback: handlers truyền xuống component đã bọc memo giữ tham chiếu ổn định giữa các lần render khi deps không đổi.
  */
 export default function App() {
-  // Danh sách công việc: mỗi phần tử có id (chuỗi duy nhất) và title (nội dung hiển thị).
   const [todos, setTodos] = useState([])
-
-  // Nội dung ô input khi đang thêm việc mới (controlled component trong TodoForm).
   const [newTitle, setNewTitle] = useState('')
-
-  // Chuỗi người dùng gõ vào ô tìm kiếm — dùng để lọc danh sách, không sửa dữ liệu gốc todos.
   const [search, setSearch] = useState('')
-
-  // id của công việc đang được sửa; null nghĩa là không ai đang chỉnh sửa.
   const [editingId, setEditingId] = useState(null)
-
-  // Bản nháp tiêu đề khi sửa — chỉ có nghĩa khi editingId khớp với một todo.
   const [editDraft, setEditDraft] = useState('')
 
-  // Chuẩn hóa từ khóa: bỏ khoảng trắng đầu/cuối + chữ thường để so sánh không phân biệt hoa thường.
-  const q = search.trim().toLowerCase()
-  // Nếu không có từ khóa thì hiện toàn bộ; ngược lại chỉ giữ các todo có title chứa q.
-  const visibleTodos = !q ? todos : todos.filter((t) => t.title.toLowerCase().includes(q))
+  // Chỉ tính lại khi danh sách hoặc chuỗi tìm kiếm đổi
+  const visibleTodos = useMemo(() => {
+    const q = search.trim().toLowerCase()
+    if (!q) return todos
+    return todos.filter((t) => t.title.toLowerCase().includes(q))
+  }, [todos, search])
 
-  // Thêm công việc (Create); bỏ qua nếu sau trim rỗng.
-  function handleAddTodo(e) {
-    e.preventDefault() // Tránh reload trang khi submit form (hành vi mặc định của <form>).
-    const t = newTitle.trim()
-    if (!t) return
-    setTodos((prev) => [...prev, { id: crypto.randomUUID(), title: t }])
-    setNewTitle('')
-  }
+  const handleAddTodo = useCallback(
+    (e) => {
+      e.preventDefault()
+      const t = newTitle.trim()
+      if (!t) return
+      setTodos((prev) => [...prev, { id: crypto.randomUUID(), title: t }])
+      setNewTitle('')
+    },
+    [newTitle],
+  )
 
-  // Bắt đầu sửa: gán editingId và copy title vào bản nháp.
-  function startEdit(todo) {
-    setEditingId(todo.id)
-    setEditDraft(todo.title)
-  }
+  const startEditById = useCallback((id) => {
+    const todo = todos.find((t) => t.id === id)
+    if (todo) {
+      setEditingId(todo.id)
+      setEditDraft(todo.title)
+    }
+  }, [todos])
 
-  // Thoát sửa, xóa bản nháp.
-  function cancelEdit() {
+  const cancelEdit = useCallback(() => {
     setEditingId(null)
     setEditDraft('')
-  }
+  }, [])
 
-  // Update: ghi đè title của đúng id; không làm gì nếu rỗng hoặc chưa chọn ai để sửa.
-  function saveEdit() {
+  const saveEdit = useCallback(() => {
     const t = editDraft.trim()
     if (!t || !editingId) return
     setTodos((prev) =>
       prev.map((x) => (x.id === editingId ? { ...x, title: t } : x)),
     )
     cancelEdit()
-  }
+  }, [editDraft, editingId, cancelEdit])
 
-  // Delete: bỏ khỏi mảng; nếu đang sửa đúng mục đó thì đóng form sửa.
-  function deleteTodo(id) {
-    setTodos((prev) => prev.filter((x) => x.id !== id))
-    if (editingId === id) cancelEdit()
-  }
+  const deleteTodoById = useCallback(
+    (id) => {
+      setTodos((prev) => prev.filter((x) => x.id !== id))
+      if (editingId === id) cancelEdit()
+    },
+    [editingId, cancelEdit],
+  )
 
   return (
     <div className="min-h-screen bg-neutral-100 py-10 text-neutral-900">
@@ -76,7 +73,6 @@ export default function App() {
             Todo List
           </h1>
 
-          {/* Form thêm việc: state newTitle do App nắm để submit xử lý tại đây */}
           <TodoForm
             value={newTitle}
             onChange={setNewTitle}
@@ -84,7 +80,6 @@ export default function App() {
           />
           <TodoSearchInput value={search} onChange={setSearch} />
 
-          {/* Danh sách + trạng thái rỗng / không khớp tìm kiếm */}
           <TodoList
             todos={todos}
             visibleTodos={visibleTodos}
@@ -93,8 +88,8 @@ export default function App() {
             onDraftChange={setEditDraft}
             onSaveEdit={saveEdit}
             onCancelEdit={cancelEdit}
-            onStartEdit={startEdit}
-            onDelete={deleteTodo}
+            onStartEdit={startEditById}
+            onDelete={deleteTodoById}
           />
         </div>
       </main>

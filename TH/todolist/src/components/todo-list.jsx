@@ -1,10 +1,11 @@
+import { memo } from 'react'
 import { TodoItem } from './todo-item.jsx'
 
 /**
- * Danh sách: (1) chưa có việc, (2) có việc nhưng tìm không ra, (3) map visibleTodos sang TodoItem.
- * todos là danh sách đầy đủ để phân biệt “trống hẳn” với “có nhưng lọc rỗng”; phần còn lại do App điều khiển (sửa, lưu, hủy, xóa).
+ * Danh sách + các trường hợp rỗng.
+ * memo: khi chỉ TodoForm rerender nhưng todos/search/editing không đổi — không cần chạy lại toàn bộ list wrapper.
  */
-export function TodoList({
+function TodoListComponent({
   todos,
   visibleTodos,
   editingId,
@@ -29,13 +30,15 @@ export function TodoList({
             editing={editingId === todo.id}
             draft={editDraft}
             onDraftChange={onDraftChange}
-            onStartEdit={() => onStartEdit(todo)}
+            onStartEdit={onStartEdit}
             onSave={onSaveEdit}
             onCancel={onCancelEdit}
-            onDelete={() => onDelete(todo.id)}
+            onDelete={onDelete}
           />
         ))
       )}
     </ul>
   )
 }
+
+export const TodoList = memo(TodoListComponent)

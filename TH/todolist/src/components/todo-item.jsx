@@ -1,13 +1,15 @@
+import { memo } from 'react'
+
 /** Class Tailwind dùng chung cho các nút Sửa / Xóa / Lưu / Hủy (giao diện thống nhất). */
 const btnClass =
   'rounded border border-neutral-400 bg-neutral-100 px-3 py-1.5 text-sm font-medium text-neutral-900 hover:bg-neutral-200'
 
 /**
- * Một dòng danh sách: text hoặc ô sửa + nút thao tác.
- * App báo đang sửa qua editing; draft/onDraftChange là bản nháp tiêu đề trước khi Lưu.
- * Enter lưu, Escape hủy; các hàm onStartEdit/onSave/onCancel/onDelete do App xử lý.
+ * Một dòng danh sách.
+ * memo: khi chỉ ô thêm hoặc tìm kiếm đổi nhưng dòng này cùng props — React bỏ qua render lại.
+ * onStartEdit / onDelete nhận id — callback ở App bọc useCallback để tham chiếu ổn định.
  */
-export function TodoItem({
+function TodoItemComponent({
   todo,
   editing,
   draft,
@@ -47,10 +49,18 @@ export function TodoItem({
           </>
         ) : (
           <>
-            <button type="button" className={btnClass} onClick={onStartEdit}>
+            <button
+              type="button"
+              className={btnClass}
+              onClick={() => onStartEdit(todo.id)}
+            >
               Sửa
             </button>
-            <button type="button" className={btnClass} onClick={onDelete}>
+            <button
+              type="button"
+              className={btnClass}
+              onClick={() => onDelete(todo.id)}
+            >
               Xóa
             </button>
           </>
@@ -59,3 +69,5 @@ export function TodoItem({
     </li>
   )
 }
+
+export const TodoItem = memo(TodoItemComponent)
