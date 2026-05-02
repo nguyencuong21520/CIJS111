@@ -8,7 +8,7 @@ import UserProfile from './components/UserProfile';
 import { Route, Routes } from 'react-router';
 
 function App() {
-  //url: http://localhost:5173/profile
+  //url: http://localhost:5173/profile/
   //url: http://localhost:5173/login
 
   return (
